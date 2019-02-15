@@ -52,7 +52,6 @@
                     <imageName>${docker.image.prefix}/${project.artifactId}</imageName>
                     <imageTags>
                         <imageTag>${project.version}</imageTag>
-                        <imageTag>latest</imageTag>
                     </imageTags>
                     <dockerDirectory>src/main/docker</dockerDirectory>
                     <resources>

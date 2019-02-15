@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class DockerController {
-    @RequestMapping("/")
+    @RequestMapping("/test")
     public String home() {
-        return "hello world\nhello docker";
+        return "hello world";
     }
 }
