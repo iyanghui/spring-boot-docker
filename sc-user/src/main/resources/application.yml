@@ -1,0 +1,20 @@
+server:
+  servlet:
+    context-path: /
+  port: 8081
+spring:
+  application:
+    name: sc-user
+  profiles:
+    active: @profile.active@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://${EUREKA_HOST:localhost}:${EUREKA_PORT:8761}/eureka
+  instance:
+    prefer-ip-address: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: sc-gateway
+server:
+  port: 9527
+  servlet:
+    context-path: /
+eureka:
+  client:
+    service-url:
+      defaultZone: http://${EUREKA_HOST:localhost}:${EUREKA_PORT:8761}/eureka
+  instance:
+    prefer-ip-address: true
+zuul:
+  routes:
+    user-route:
+      path: /sc-user/**
+      service-id: sc-user
+    bill-route:
+      path: /sc-bill/**
+      service-id: sc-bill
+
+jwt:
+  secret: 8677df7fc3a34e26a61c034d5ec8245d
+  ttl: 360000000
+  header: x-access-token
