@@ -6,6 +6,12 @@ services:
     ports:
       - 8761:8761
     command: java -Djava.security.egd=file:/dev/./urandom -jar /app.jar
+  sc-zipkin:
+    image: openzipkin/zipkin
+    container_name: sc-zipkin
+    ports:
+      # Port used for the Zipkin UI and HTTP Api
+      - 9411:9411
   sc-user:
     container_name: sc-user
     image: 'zhixilang/spring-cloud-learn/sc-user:1.0.0-SNAPSHOT'
@@ -13,8 +19,15 @@ services:
       - 8081
     environment:
       - EUREKA_HOST=sc-eureka
+      - EUREKA_PORT=8761
+      - ZIP_KIN_SERVER_HOST=sc-zipkin
+      - ZIP_KIN_SERVER_PORT=9411
     links:
       - sc-eureka
+      - sc-zipkin
+    depends_on:
+      - sc-eureka
+      - sc-zipkin
     command: java -Djava.security.egd=file:/dev/./urandom -jar /app.jar
   sc-bill:
     container_name: sc-bill
@@ -23,8 +36,15 @@ services:
       - 8082
     environment:
       - EUREKA_HOST=sc-eureka
+      - EUREKA_PORT=8761
+      - ZIP_KIN_SERVER_HOST=sc-zipkin
+      - ZIP_KIN_SERVER_PORT=9411
     links:
       - sc-eureka
+      - sc-zipkin
+    depends_on:
+      - sc-eureka
+      - sc-zipkin
     command: java -Djava.security.egd=file:/dev/./urandom -jar /app.jar
   sc-gateway:
     container_name: sc-gateway
@@ -33,6 +53,13 @@ services:
       - 9527:9527
     environment:
       - EUREKA_HOST=sc-eureka
+      - EUREKA_PORT=8761
+      - ZIP_KIN_SERVER_HOST=sc-zipkin
+      - ZIP_KIN_SERVER_PORT=9411
     links:
       - sc-eureka
+      - sc-zipkin
+    depends_on:
+      - sc-eureka
+      - sc-zipkin
     command: java -Djava.security.egd=file:/dev/./urandom -jar /app.jar

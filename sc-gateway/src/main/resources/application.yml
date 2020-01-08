@@ -1,10 +1,9 @@
 spring:
-  application:
-    name: sc-gateway
-server:
-  port: 9527
-  servlet:
-    context-path: /
+  zipkin:
+    base-url: http://${ZIP_KIN_SERVER_HOST:localhost}:${ZIP_KIN_SERVER_PORT:9411}
+  sleuth:
+    sampler:
+      probability: 1
 eureka:
   client:
     service-url:
@@ -19,8 +18,8 @@ zuul:
     bill-route:
       path: /sc-bill/**
       service-id: sc-bill
-
 jwt:
   secret: 8677df7fc3a34e26a61c034d5ec8245d
   ttl: 360000000
   header: x-access-token
+

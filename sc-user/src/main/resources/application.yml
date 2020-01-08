@@ -7,6 +7,11 @@ spring:
     name: sc-user
   profiles:
     active: @profile.active@
+  zipkin:
+    base-url: http://${ZIP_KIN_SERVER_HOST:localhost}:${ZIP_KIN_SERVER_PORT:9411}
+  sleuth:
+    sampler:
+      probability: 1
 eureka:
   client:
     service-url:

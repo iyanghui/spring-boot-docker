@@ -34,8 +34,6 @@ public class ResetRouteFilter extends ZuulFilter {
 
     @Override
     public Object run() throws ZuulException {
-        RequestContext requestContext = RequestContext.getCurrentContext();
-        LOGGER.info(requestContext.getRouteHost().toString());
 
         return null;
     }

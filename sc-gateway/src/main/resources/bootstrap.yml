@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: sc-gateway
+server:
+  port: 9527
+  servlet:
+    context-path: /
