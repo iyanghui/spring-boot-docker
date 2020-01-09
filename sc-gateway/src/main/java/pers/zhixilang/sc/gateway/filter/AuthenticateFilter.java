@@ -61,13 +61,13 @@ public class AuthenticateFilter extends ZuulFilter {
             return null;
         }
         LOGGER.info("===request url: {}, token: {}", request.getRequestURL(), token);
-        /*if (jwtUtil.validateJWT(token)) {
+        if (jwtUtil.validateJWT(token)) {
             return null;
-        }*/
+        }
         resultInfo.setMsg("校验失败");
         context.setResponseBody(JSON.toJSONString(resultInfo));
         context.getResponse().setContentType("application/json;charset=UTF-8");
-//        context.setSendZuulResponse(false);
+        context.setSendZuulResponse(false);
         return null;
     }
 }

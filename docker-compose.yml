@@ -1,7 +1,7 @@
 version: '3'
 services:
   sc-eureka:
-    container_name: sc-eureke
+    container_name: sc-eureka
     image: 'zhixilang/spring-cloud-learn/sc-eureka:1.0.0-SNAPSHOT'
     ports:
       - 8761:8761
